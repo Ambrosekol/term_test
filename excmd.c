@@ -7,11 +7,22 @@
   */
 int execute_command(char *command, char *progname)
 {
-	char *args[2];
+	//char *args[] = {"/bin/ls", "-l", NULL};
+	char *args[4];
+	char *token;
+	int i = 0;
+
+	token = strtok(command, " ");
+	while (token != NULL && i < 4)
+	{
+		token[strcspn(token, "\n")] = '\0';
+		args[i] = token;
+		token = strtok(NULL, " ");
+		i++;
+	}
+	args[i] = NULL;
 	int status, exit_status;
 
-	args[0] = command;
-	args[1] = NULL;
 	pid_t pid = fork();
 
 	if (pid == -1)
@@ -19,9 +30,9 @@ int execute_command(char *command, char *progname)
 		perror("fork");
 		return (1);
 	}
-	else if (pid == 0)
+	if (pid == 0)
 	{
-		execve(command, args, NULL);
+		execve(args[0], args, NULL);
 		perror(progname);
 		exit(1);
 	}
