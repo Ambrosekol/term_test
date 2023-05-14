@@ -7,12 +7,17 @@
   */
 int main(int argc, char *argv[])
 {
-	char *command = NULL;
+	char *command = malloc(1024);
 	size_t wrn = 0;
 	int status;
+	ssize_t wrdcnt;
 /*	char *fileinit = NULL; */
 	/** ssize_t input_file; **/
 
+	if (command == NULL)
+	{
+		printf("error in malloc");
+	}
 	if (argc > 1)
 	{
 		printf("Usage: %s [file]\n", argv[0]);
@@ -23,11 +28,14 @@ int main(int argc, char *argv[])
 		while (1)
 		{
 			printf("$ ");
-			if (getline(&command, &wrn, stdin) == 0)
+			wrdcnt = getline(&command, &wrn, stdin);
+			if (wrdcnt <= 0)
 			{
 				printf("\n");
 				break;
 			}
+			if (wrdcnt != EOF)
+			{
 			command[strcspn(command, "\n")] = '\0';
 			if (strcmp(command, "exit") == 0)
 			{
@@ -40,8 +48,7 @@ int main(int argc, char *argv[])
 			{
 				printf("%s:, No such file or directory.\n", argv[0]);
 			}
-			free(command);
-			command = NULL;
+			}
 		}
 	}
 	else
@@ -60,5 +67,6 @@ int main(int argc, char *argv[])
 			command = NULL;
 		}
 	}
+	free(command);
 	return (0);
 }

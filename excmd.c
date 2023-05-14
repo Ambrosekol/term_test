@@ -8,12 +8,12 @@
 int execute_command(char *command, char *progname)
 {
 	//char *args[] = {"/bin/ls", "-l", NULL};
-	char *args[4];
+	char *args[8];
 	char *token;
 	int i = 0;
 
 	token = strtok(command, " ");
-	while (token != NULL && i < 4)
+	while (token != NULL && i < 8)
 	{
 		token[strcspn(token, "\n")] = '\0';
 		args[i] = token;
@@ -22,7 +22,8 @@ int execute_command(char *command, char *progname)
 	}
 	args[i] = NULL;
 	int status, exit_status;
-
+	if (args[0] == NULL)
+		return (0);
 	pid_t pid = fork();
 
 	if (pid == -1)
