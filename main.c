@@ -36,18 +36,18 @@ int main(int argc, char *argv[])
 			}
 			if (wrdcnt != EOF)
 			{
-			command[strcspn(command, "\n")] = '\0';
-			if (strcmp(command, "exit") == 0)
-			{
-				break;
-			}
-			/** entry point of code **/
-			status = execute_command(command, argv[0]);
-			/**==================================**/
-			if (status == -1)
-			{
-				printf("%s:, No such file or directory.\n", argv[0]);
-			}
+				command[strcspn(command, "\n")] = '\0';
+				if (strcmp(command, "exit") == 0)
+				{
+					break;
+				}
+				/** entry point of code **/
+				status = execute_command(command, argv[0]);
+				/**==================================**/
+				if (status == -1)
+				{
+					printf("%s:, No such file or directory.\n", argv[0]);
+				}
 			}
 		}
 	}
