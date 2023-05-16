@@ -12,7 +12,7 @@ int execute_command(char __attribute__((unused)) *command, char *progname)
 	char *token;
 	int exstatus;
 	int i = 0;
-	int status; //exit_status;
+	int status, exit_status;
 
 	token = strtok(command, " ");
 	while (token != NULL && i < 8)
@@ -44,8 +44,8 @@ int execute_command(char __attribute__((unused)) *command, char *progname)
 		waitpid(pid, &status, 0);
 		if (WIFEXITED(status))
 		{
-		//	exit_status = WEXITSTATUS(status);
-		//	return (exit_status);
+			exit_status = WEXITSTATUS(status);
+			return (exit_status);
 		}
 		else
 		{
