@@ -8,6 +8,7 @@
 #include <sys/wait.h>
 #include <fcntl.h>
 #define MAX_COMMAND_LENGTH 100
-
+#define PATH "/bin"
+int execfun(char **args);
 int execute_command(char *command, char *);
 #endif

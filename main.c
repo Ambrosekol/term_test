@@ -46,7 +46,7 @@ int main(int argc, char *argv[])
 				/**==================================**/
 				if (status == -1)
 				{
-					printf("%s:, No such file or directory.\n", argv[0]);
+					printf("%s:, bNo such file or directory.\n", argv[0]);
 				}
 			}
 		}
@@ -61,10 +61,11 @@ int main(int argc, char *argv[])
 			/**==================================**/
 			if (status == -1)
 			{
-				printf("%s:, No such file or directory.\n", argv[0]);
+				printf("%s:, ae or directory.\n", argv[0]);
 			}
 			free(command);
 			command = NULL;
+			exit(127);
 		}
 	}
 	free(command);
