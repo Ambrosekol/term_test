@@ -9,7 +9,6 @@ int main(int argc, char *argv[])
 {
 	char *command = malloc(1024);
 	size_t wrn = 0;
-	int status;
 	ssize_t wrdcnt;
 /*	char *fileinit = NULL; */
 	/** ssize_t input_file; **/
@@ -58,7 +57,8 @@ int main(int argc, char *argv[])
 		{
 			command[strcspn(command, "\n")] = '\0';
 			/** entry point of code **/
-			status = execute_command(command, argv[0]);
+			//status = 
+			execute_command(command, argv[0]);
 			/**==================================**/
 			free(command);
 			command = NULL;
