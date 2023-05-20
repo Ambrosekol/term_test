@@ -34,9 +34,10 @@ int execute_command(char __attribute__((unused)) *command, char *progname)
 	}
 	if (pid == 0)
 	{
-		exstatus = execfun(args);
+		exstatus = execfun(args, progname);
 		//execve(args[0], args, NULL);
 		perror(progname);
+	//	printf("lolla");
 		exit(exstatus);
 	}
 	else
