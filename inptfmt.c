@@ -1,5 +1,8 @@
 #include "header.h"
 #include <errno.h>
+
+extern char **environ;
+
 int execfun(char **args, char *progname)
 {
 	char path[20] = PATH;
@@ -8,7 +11,7 @@ int execfun(char **args, char *progname)
 
 	if ((int) strcspn(args[0], "/") == 0)
 	{
-		status = execve(args[0], args, NULL);
+		status = execve(args[0], args, environ);
 
 		if (status == -1)
 		{
@@ -27,7 +30,7 @@ int execfun(char **args, char *progname)
 	{
 		strcat(path, "/");
 		strcat(path, args[0]);
-		status = execve(path, args, NULL);
+		status = execve(path, args, environ);
 
 		if (status == -1) 
 		{
