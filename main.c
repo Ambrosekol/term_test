@@ -42,12 +42,13 @@ int main(int argc, char *argv[])
 					break;
 				}
 				/** entry point of code **/
-				status = execute_command(command, argv[0]);
+				//status = 
+					execute_command(command, argv[0]);
 				/**==================================**/
-				if (status == -1)
+				/**if (status == -1)
 				{
 					printf("%s:, bNo such file or directory.\n", argv[0]);
-				}
+				}**/
 			}
 		}
 	}
@@ -59,10 +60,6 @@ int main(int argc, char *argv[])
 			/** entry point of code **/
 			status = execute_command(command, argv[0]);
 			/**==================================**/
-			if (status == -1)
-			{
-				printf("%s:, ae or directory.\n", argv[0]);
-			}
 			free(command);
 			command = NULL;
 			exit(127);
